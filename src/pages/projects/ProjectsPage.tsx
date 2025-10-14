@@ -12,6 +12,7 @@ import CategoryFilter from './components/CategoryFilter';
 import Pagination from './components/Pagination';
 import CTASection from '../../components/common/CTASection';
 import { getProjectStats, getProjectsPaginated } from './projectsData';
+import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,7 +106,7 @@ const ProjectsPage: React.FC = () => {
   // 페이지 변경 핸들러
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // 페이지네이션 시에는 스크롤 위치 유지
   };
 
   return (
@@ -138,7 +139,7 @@ const ProjectsPage: React.FC = () => {
               다양한 기술 스택과 창의적인 아이디어로 구현한<br className="hidden md:block" />
               <span className="font-bold text-blue-600">프로젝트들을 확인해보세요</span>
             </p>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
               각 프로젝트는 최신 웹 기술과 모던한 디자인 패턴을 적용하여 
               최상의 사용자 경험을 제공합니다.
             </p>

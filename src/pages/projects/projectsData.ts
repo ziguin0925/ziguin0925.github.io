@@ -19,6 +19,17 @@ export interface Project {
 export const projectsData: Project[] = [
   // IT 프로젝트
   {
+    id: 'blog',
+    title: 'Tech Blog',
+    description: '개발과 디자인에 대한 생각을 기록하는 미니멀 블로그. 깔끔한 타이포그래피와 심플한 레이아웃으로 콘텐츠에 집중합니다.',
+    tags: ['React', 'TypeScript', 'Blog', 'Minimal Design'],
+    link: '/blog',
+    gradient: 'from-gray-900 to-gray-700',
+    bgGradient: 'from-gray-50 to-white',
+    featured: true,
+    category: 'it'
+  },
+  {
     id: 'future',
     title: 'Future Project',
     description: '미래지향적인 인터랙티브 웹 경험. 파티클 효과와 GSAP 애니메이션으로 구현된 혁신적인 UI/UX 프로젝트입니다.',
@@ -93,6 +104,17 @@ export const projectsData: Project[] = [
     gradient: 'from-amber-500 to-orange-500',
     bgGradient: 'from-amber-50 to-orange-50',
     featured: false,
+    category: 'it'
+  },
+  {
+    id: 'statistics-dashboard',
+    title: 'Statistics Dashboard',
+    description: '프로젝트 통계와 분석을 위한 종합 대시보드. 다양한 차트와 실시간 데이터 시각화를 제공합니다.',
+    tags: ['React', 'Recharts', 'TypeScript', 'Dashboard'],
+    link: '/statistics',
+    gradient: 'from-violet-500 to-purple-500',
+    bgGradient: 'from-violet-50 to-purple-50',
+    featured: true,
     category: 'it'
   },
 

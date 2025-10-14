@@ -3,10 +3,12 @@ import { BrowserRouter, Routes } from "react-router-dom";
 
 import { getMainRoutes } from "./MainRouter";
 import { getPagesRoutes } from "./PagesRouter";
+import ScrollToTop from "../components/common/ScrollToTop";
 
-const Router = () => {
+const Router = ({ basename }: { basename: string }) => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={basename}>
+            <ScrollToTop />
             <Routes>
                 {/* components 기반 라우트 (기본 레이아웃 사용) */}
                 {getMainRoutes()}

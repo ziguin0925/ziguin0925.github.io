@@ -9,6 +9,9 @@ import FuturePage from "../pages/projects/future/FuturePage";
 import NotFound from "../pages/NotFound";
 import RouteWrapper from "../components/layout/RouteWrapper";
 import StartedPage from "../pages/projects/toss/StartedPage";
+import BlogPage from "../pages/projects/blog/BlogPage";
+import BlogPostPage from "../pages/projects/blog/BlogPostPage";
+import StatisticsPage from "../pages/projects/statistics/StatisticsPage";
 
 // pages 폴더 기반 라우트 설정
 export const pagesRoutes = [
@@ -33,6 +36,30 @@ export const pagesRoutes = [
     layout: 'pages' as const,
     showHeader: true,
     showFooter: true
+  },
+  
+  // 블로그 페이지들 (자체 레이아웃 사용)
+  { 
+    path: "/blog", 
+    component: BlogPage, 
+    layout: 'none' as const 
+  },
+  { 
+    path: "/blog/:id", 
+    component: BlogPostPage, 
+    layout: 'none' as const 
+  },
+  
+  // 통계 대시보드 (자체 레이아웃 사용)
+  { 
+    path: "/statistics", 
+    component: StatisticsPage, 
+    layout: 'none' as const 
+  },
+  { 
+    path: "/statistics/:section", 
+    component: StatisticsPage, 
+    layout: 'none' as const 
   },
   { 
     path: "*", 

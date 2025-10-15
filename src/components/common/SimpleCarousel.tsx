@@ -1,51 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { getFeaturedProjects } from "../../pages/projects/projectsData";
 
-const projects = [
-  {
-    id: 1,
-    title: "React Portfolio",
-    description: "현대적인 React와 TypeScript로 구현한 포트폴리오 웹사이트",
-    image: "https://gongu.copyright.or.kr/gongu/wrt/cmmn/wrtFileImageView.do?wrtSn=9046601&filePath=L2Rpc2sxL25ld2RhdGEvMjAxNC8yMS9DTFM2L2FzYWRhbFBob3RvXzI0MTRfMjAxNDA0MTY=&thumbAt=Y&thumbSe=b_tbumb&wrtTy=10004",
-    tech: ["React", "TypeScript", "Tailwind CSS"],
-    gradient: "from-blue-500 to-purple-600"
-  },
-  {
-    id: 2,
-    title: "E-commerce Platform",
-    description: "완전한 온라인 쇼핑몰 솔루션",
-    image: "https://cdn.crowdpic.net/detail-thumb/thumb_d_2F583E5543F7E19139C6FCFFBF9607A6.jpg",
-    tech: ["Next.js", "Node.js", "MongoDB"],
-    gradient: "from-green-500 to-teal-600"
-  },
-  {
-    id: 3,
-    title: "Mobile App",
-    description: "크로스 플랫폼 모바일 애플리케이션",
-    image: "https://www.gyeongju.go.kr/upload/content/thumb/gyimage/%EC%B2%A8%EC%84%B1%EB%8C%80%EC%9D%98%20%EC%95%84%EB%A6%84%EB%8B%A4%EC%9B%80.jpg",
-    tech: ["React Native", "Expo", "Firebase"],
-    gradient: "from-pink-500 to-rose-600"
-  },
-  {
-    id: 4,
-    title: "Dashboard System",
-    description: "실시간 데이터 시각화 대시보드",
-    image: "https://media.istockphoto.com/id/516180836/ko/%EC%82%AC%EC%A7%84/%EA%B7%B8%EB%A6%B0-%EB%9D%BC%EC%9D%B4%EC%8A%A4-fild-%EC%A0%80%EB%85%81-%ED%95%98%EB%8A%98%EC%97%90.jpg?s=612x612&w=0&k=20&c=qzZCsyadgMeZyDCcFAjUl1bRnD4kR7iTzaVkBTZZ7PA=",
-    tech: ["Vue.js", "D3.js", "Express"],
-    gradient: "from-orange-500 to-red-600"
-  },
-  {
-    id: 5,
-    title: "AI Chatbot",
-    description: "인공지능 기반 고객 서비스 챗봇",
-    image: "https://img.pikbest.com/origin/10/45/74/29fpIkbEsTzN6.jpg!w700wp",
-    tech: ["Python", "TensorFlow", "FastAPI"],
-    gradient: "from-indigo-500 to-purple-600"
-  }
-];
+const projects = getFeaturedProjects();
 
 export default function SimpleCarousel() {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0); // 0부터 시작
   const [isHovered, setIsHovered] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -304,12 +266,15 @@ export default function SimpleCarousel() {
                           {currentProject.title}
                         </h3>
                         
-                        <p className="text-base sm:text-lg md:text-2xl lg:text-3xl mb-6 md:mb-12 leading-relaxed max-w-3xl mx-auto text-white/95 font-medium">
+                        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 md:mb-12 leading-relaxed max-w-3xl mx-auto text-white/95 font-medium">
                           {currentProject.description}
                         </p>
 
                         {/* CTA 버튼 */}
-                        <button className="group relative px-6 py-3 md:px-10 md:py-5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-white font-semibold text-sm md:text-lg hover:bg-white/30 transition-all duration-300 hover:scale-105 overflow-hidden">
+                        <button 
+                          onClick={() => navigate(currentProject.link)}
+                          className="group relative px-6 py-3 md:px-10 md:py-5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-white font-semibold text-sm md:text-lg hover:bg-white/30 transition-all duration-300 hover:scale-105 overflow-hidden"
+                        >
                           <span className="relative z-10">프로젝트 살펴보기</span>
                           <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </button>

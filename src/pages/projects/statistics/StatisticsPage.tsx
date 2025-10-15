@@ -26,6 +26,7 @@ import EmailPage from './components/EmailPage';
 import CalendarPage from './components/CalendarPage';
 import WorkDataPage from './components/WorkDataPage';
 import WorkDataSearchPage from './components/WorkDataSearchPage';
+import WorkDataCleanPage from './components/WorkDataCleanPage';
 import { statisticsMenuList, getMenuByGroup, getMenuItemByPath } from './statisticsMenuData';
 
 const StatisticsPage: React.FC = () => {
@@ -165,8 +166,9 @@ const StatisticsPage: React.FC = () => {
       case 'calendar':
         return <CalendarPage />;
       case 'work-data-1':
-      case 'work-data-2':
         return <WorkDataPage />;
+      case 'work-data-2':
+        return <WorkDataCleanPage />;
       case 'work-data-3':
         return <WorkDataSearchPage />;
       default:

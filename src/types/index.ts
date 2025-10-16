@@ -111,7 +111,7 @@ export interface CategoryConfig {
 // Route Types
 // ============================================
 
-export type LayoutType = 'main' | 'statistics' | 'none';
+export type LayoutType = 'main' | 'statistics' | 'api-explorer' | 'none';
 
 export interface RouteConfig {
   path: string;

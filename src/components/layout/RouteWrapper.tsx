@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from './Layout';
 import StatisticsLayout from './StatisticsLayout';
+import ApiExplorerLayout from './ApiExplorerLayout';
 import { LayoutType } from '../../types';
 
 interface RouteWrapperProps {
@@ -15,6 +16,7 @@ interface RouteWrapperProps {
  * @param useLayout - 레이아웃 타입
  *   - 'main': 메인 레이아웃 (Header + Footer)
  *   - 'statistics': 통계 대시보드 레이아웃
+ *   - 'api-explorer': API Explorer 레이아웃
  *   - 'none': 레이아웃 없음
  * @param showHeader - 헤더 표시 여부 (기본: true)
  * @param showFooter - 푸터 표시 여부 (기본: true)
@@ -37,6 +39,11 @@ const RouteWrapper: React.FC<RouteWrapperProps> = ({
   // 통계 대시보드 레이아웃
   if (useLayout === 'statistics') {
     return <StatisticsLayout>{children}</StatisticsLayout>;
+  }
+  
+  // API Explorer 레이아웃
+  if (useLayout === 'api-explorer') {
+    return <ApiExplorerLayout>{children}</ApiExplorerLayout>;
   }
   
   // 레이아웃 없음

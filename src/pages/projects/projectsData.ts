@@ -77,6 +77,18 @@ export const projectsData: Project[] = [
     featured: false,
     category: 'it'
   },
+  {
+    id: 'api-explorer',
+    title: 'API Explorer',
+    description: 'REST API를 활용한 데이터 탐색 플랫폼. JSONPlaceholder API와 연동하여 사용자, 게시글, 앨범 등의 데이터를 실시간으로 조회하고 관리할 수 있습니다.',
+    tags: ['React', 'REST API', 'TypeScript', 'Data Fetching'],
+    image: 'https://img.freepik.com/free-photo/programming-background-collage_23-2149901789.jpg',
+    link: '/api-explorer',
+    gradient: 'from-emerald-500 to-teal-500',
+    bgGradient: 'from-emerald-50 to-teal-50',
+    featured: true,
+    category: 'it'
+  },
 
 
   // 전기 프로젝트

@@ -5,6 +5,7 @@ import RouteWrapper from '../components/layout/RouteWrapper';
 import { RouteConfig } from '../types';
 import { routes } from './routeConfig';
 import { statisticsRoute } from './statisticsRoutes';
+import { apiExplorerRoute } from './apiExplorerRoutes';
 
 /**
  * 재귀적으로 라우트를 렌더링하는 함수
@@ -70,7 +71,7 @@ const renderRoute = (route: RouteConfig, isChildRoute = false) => {
  */
 const AppRoutes = () => {
   // 모든 라우트를 통합
-  const allRoutes = [...routes, statisticsRoute];
+  const allRoutes = [...routes, statisticsRoute, apiExplorerRoute];
 
   return (
     <Routes>

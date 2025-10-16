@@ -147,38 +147,22 @@ export default function SimpleCarousel() {
   };
 
   useGSAP(() => {
-    // 초기 애니메이션
-    gsap.fromTo('.carousel-container', 
-      { 
-        opacity: 0,
-        y: 50
-      },
-      { 
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out"
-      }
-    );
-
-    // 미리보기 카드 애니메이션
-    gsap.fromTo('.preview-card', 
-      { 
-        opacity: 0,
-        scale: 0.8,
-        y: 30
-      },
-      { 
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: 0.2,
-        delay: 0.5
-      }
-    );
-
+    // 초기 애니메이션 - DOM 존재 확인
+    const container = document.querySelector('.carousel-container');
+    if (container) {
+      gsap.fromTo('.carousel-container', 
+        { 
+          opacity: 0,
+          y: 50
+        },
+        { 
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out"
+        }
+      );
+    }
   }, []);
 
   return (
@@ -270,7 +254,12 @@ export default function SimpleCarousel() {
                           {currentProject.description}
                         </p>
 
-                        {/* CTA 버튼 */}
+                        {/* 
+                          모바일: text-base → text-sm
+                          태블릿: text-lg → text-base
+                          데스크톱: text-2xl → text-lg
+                          대형 화면: text-3xl → text-xl
+                        */}
                         <button 
                           onClick={() => navigate(currentProject.link)}
                           className="group relative px-6 py-3 md:px-10 md:py-5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-white font-semibold text-sm md:text-lg hover:bg-white/30 transition-all duration-300 hover:scale-105 overflow-hidden"

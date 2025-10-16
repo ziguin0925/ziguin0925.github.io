@@ -3,11 +3,71 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import SectionFactory from './components/SectionFactory';
 import ScrollAnimatedSection from './components/ScrollAnimatedSection';
-import { useIntersectionObserver, useScrollAnimation } from '../../../hooks/useScrollAnimation';
-import { SECTIONS_DATA } from '../../../constants';
+import { useIntersectionObserver, useScroll } from '../../../hooks';
+import { SectionData } from '../../../types';
+
+// 샘플 섹션 데이터
+const SECTIONS_DATA: SectionData[] = [
+  {
+    id: 'home',
+    title: '홈',
+    subtitle: '금융의 시작',
+    description: '모든 금융 서비스를 한 곳에서',
+    features: ['간편한 계좌 관리', '실시간 알림', '스마트 분석'],
+    color: 'blue'
+  },
+  {
+    id: 'spending',
+    title: '소비',
+    subtitle: '똑똑한 소비',
+    description: '소비 패턴 분석과 관리',
+    features: ['자동 분류', '예산 설정', '소비 리포트'],
+    color: 'purple'
+  },
+  {
+    id: 'transfer',
+    title: '송금',
+    subtitle: '빠른 송금',
+    description: '간편하고 안전한 송금',
+    features: ['즉시 송금', '예약 송금', '연락처 송금'],
+    color: 'green'
+  },
+  {
+    id: 'loan',
+    title: '대출',
+    subtitle: '맞춤 대출',
+    description: '나에게 맞는 대출 상품',
+    features: ['한도 조회', '금리 비교', '빠른 승인'],
+    color: 'orange'
+  },
+  {
+    id: 'credit',
+    title: '신용',
+    subtitle: '신용 관리',
+    description: '신용 점수 관리',
+    features: ['신용 점수 조회', '개선 팁', '신용카드 추천'],
+    color: 'red'
+  },
+  {
+    id: 'investment',
+    title: '투자',
+    subtitle: '스마트 투자',
+    description: '투자를 쉽고 간편하게',
+    features: ['자동 투자', '포트폴리오', '투자 정보'],
+    color: 'indigo'
+  },
+  {
+    id: 'payment',
+    title: '결제',
+    subtitle: '간편 결제',
+    description: '어디서나 간편하게',
+    features: ['QR 결제', '카드 등록', '결제 내역'],
+    color: 'pink'
+  }
+];
 
 const StartedPage: React.FC = () => {
-  const { scrollY, isScrollingDown } = useScrollAnimation();
+  const { scrollY, isScrollingDown } = useScroll();
   const [currentSection, setCurrentSection] = useState(0);
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);

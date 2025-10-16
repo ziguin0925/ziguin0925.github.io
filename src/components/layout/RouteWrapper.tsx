@@ -1,19 +1,23 @@
 import React from 'react';
 import Layout from './Layout';
-import PagesLayout from './PagesLayout';
+import StatisticsLayout from './StatisticsLayout';
+import { LayoutType } from '../../types';
 
 interface RouteWrapperProps {
   children: React.ReactNode;
-  useLayout?: boolean | 'main' | 'pages' | 'none';
+  useLayout?: LayoutType | boolean;
   showHeader?: boolean;
   showFooter?: boolean;
 }
 
 /**
  * 라우트별 레이아웃 래퍼
- * @param useLayout - 'main': 기본 레이아웃, 'pages': 페이지 레이아웃, 'none' 또는 false: 레이아웃 없음
- * @param showHeader - PagesLayout 사용 시 헤더 표시 여부 (기본: true)
- * @param showFooter - PagesLayout 사용 시 푸터 표시 여부 (기본: true)
+ * @param useLayout - 레이아웃 타입
+ *   - 'main': 메인 레이아웃 (Header + Footer)
+ *   - 'statistics': 통계 대시보드 레이아웃
+ *   - 'none': 레이아웃 없음
+ * @param showHeader - 헤더 표시 여부 (기본: true)
+ * @param showFooter - 푸터 표시 여부 (기본: true)
  */
 const RouteWrapper: React.FC<RouteWrapperProps> = ({ 
   children, 
@@ -21,18 +25,18 @@ const RouteWrapper: React.FC<RouteWrapperProps> = ({
   showHeader = true,
   showFooter = true
 }) => {
-  // 기본 레이아웃 (components 기반 페이지용)
-  if (useLayout === true || useLayout === 'main') {
-    return <Layout>{children}</Layout>;
+  // 메인 레이아웃 (Header + Footer)
+  if (useLayout === 'main') {
+    return (
+      <Layout showHeader={showHeader} showFooter={showFooter}>
+        {children}
+      </Layout>
+    );
   }
   
-  // pages 폴더 전용 레이아웃
-  if (useLayout === 'pages') {
-    return (
-      <PagesLayout showHeader={showHeader} showFooter={showFooter}>
-        {children}
-      </PagesLayout>
-    );
+  // 통계 대시보드 레이아웃
+  if (useLayout === 'statistics') {
+    return <StatisticsLayout>{children}</StatisticsLayout>;
   }
   
   // 레이아웃 없음

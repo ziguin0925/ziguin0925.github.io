@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {
   Dialog,
   DialogPanel,
@@ -21,11 +21,12 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
+import { APP_CONFIG, NAVIGATION } from '../../constants'
 
 const products = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
   { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
+  { name: 'Security', description: 'Your customers data will be safe and secure', href: '#', icon: FingerPrintIcon },
   { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
   { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
 ]
@@ -34,11 +35,7 @@ const callsToAction = [
   { name: 'Contact sales', href: '#', icon: PhoneIcon },
 ]
 
-const headerMenuName = [
-  { name: 'About', href: '/about' },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Contact', href: '#' },
-]
+const headerMenuName = NAVIGATION.header.map(item => ({ name: item.label, href: item.href }))
 
 const HeaderCom = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -48,13 +45,13 @@ const HeaderCom = () => {
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5 group">
-            <span className="sr-only">JeongRyongWoo</span>
+            <span className="sr-only">{APP_CONFIG.name}</span>
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <span className="text-white font-bold text-sm">J</span>
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                JeongRyongWoo
+                {APP_CONFIG.name}
               </span>
             </div>
           </Link>
@@ -87,10 +84,13 @@ const HeaderCom = () => {
                     className="group relative flex items-center gap-x-4 rounded-lg p-3 text-sm hover:bg-blue-50 transition-colors"
                   >
                     <div className="flex size-10 flex-none items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 group-hover:scale-110 transition-transform duration-300">
-                      <item.icon aria-hidden="true" className="size-5 text-white" />
+                      {(() => {
+                        const Icon = item.icon;
+                        return <Icon aria-hidden="true" className="size-5 text-white" />;
+                      })()}
                     </div>
                     <div className="flex-auto">
-                      <Link key={item.name} to={item.href} className="block font-semibold text-gray-900">
+                      <Link key={item.name} to={item.href || '#'} className="block font-semibold text-gray-900">
                         {item.name}
                         <span className="absolute inset-0" />
                       </Link>
@@ -103,10 +103,13 @@ const HeaderCom = () => {
                 {callsToAction.map((item) => (
                   <Link
                     key={item.name}
-                    to={item.href}
+                    to={item.href || '#'}
                     className="flex items-center justify-center gap-x-2 p-3 text-sm font-semibold text-gray-700 hover:bg-blue-50 transition-colors"
                   >
-                    <item.icon aria-hidden="true" className="size-4 flex-none text-gray-500" />
+                    {(() => {
+                      const Icon = item.icon;
+                      return <Icon aria-hidden="true" className="size-4 flex-none text-gray-500" />;
+                    })()}
                     {item.name}
                   </Link>
                 ))}
@@ -132,13 +135,13 @@ const HeaderCom = () => {
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white/95 backdrop-blur-md p-6 sm:max-w-sm border-l border-gray-200/50">
           <div className="flex items-center justify-between">
             <Link to="/" className="-m-1.5 p-1.5 group">
-              <span className="sr-only">JeongRyongWoo</span>
+              <span className="sr-only">{APP_CONFIG.name}</span>
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">J</span>
                 </div>
                 <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  JeongRyongWoo
+                  {APP_CONFIG.name}
                 </span>
               </div>
             </Link>

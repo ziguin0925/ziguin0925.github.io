@@ -223,7 +223,7 @@ const Main = () => {
               </div>
 
               {/* CTA 버튼들 */}
-              <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
+              <div className="cta-buttons mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
                 <Link
                   to="/started"
                   className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25"

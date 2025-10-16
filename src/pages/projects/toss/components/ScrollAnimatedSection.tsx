@@ -1,5 +1,5 @@
 import React from 'react';
-import { useScrollVisibility } from '../../../../hooks/useScrollVisibility';
+import { useScrollVisibility } from '../../../../hooks';
 
 interface ScrollAnimatedSectionProps {
   children: React.ReactNode;

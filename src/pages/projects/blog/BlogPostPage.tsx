@@ -21,7 +21,7 @@ const BlogPostPage: React.FC = () => {
   if (!post) {
     return (
       <BlogLayout>
-        <div className="max-w-3xl mx-auto px-6 py-20 text-center">
+        <div className="max-w-5xl mx-auto px-6 py-20 text-center">
           <h1 className="text-4xl font-bold mb-4">Post not found</h1>
           <Link
             to="/blog"
@@ -47,7 +47,7 @@ const BlogPostPage: React.FC = () => {
     <BlogLayout>
       <article>
         {/* 뒤로가기 버튼 */}
-        <div className="max-w-3xl mx-auto px-6 pt-8 pb-4">
+        <div className="max-w-5xl mx-auto px-6 pt-8 pb-4">
           <button
             onClick={() => navigate('/blog')}
             className="inline-flex items-center gap-2 text-gray-600 hover:text-black transition-colors"
@@ -58,7 +58,7 @@ const BlogPostPage: React.FC = () => {
         </div>
 
         {/* 포스트 헤더 */}
-        <header className="max-w-3xl mx-auto px-6 py-12 border-b border-gray-200">
+        <header className="max-w-5xl mx-auto px-6 py-12 border-b border-gray-200">
           {/* 카테고리 */}
           <div className="mb-6">
             <span className="text-sm font-semibold text-black">
@@ -94,7 +94,7 @@ const BlogPostPage: React.FC = () => {
         </header>
 
         {/* 포스트 내용 */}
-        <div className="max-w-3xl mx-auto px-6 py-12">
+        <div className="max-w-5xl mx-auto px-6 py-12">
           {/* 요약 */}
           <div className="mb-12 p-6 bg-gray-50 border-l-4 border-black">
             <p className="text-lg text-gray-700">
@@ -143,14 +143,21 @@ const BlogPostPage: React.FC = () => {
 
         {/* 관련 포스트 */}
         {relatedPosts.length > 0 && (
-          <section className="max-w-3xl mx-auto px-6 py-12 border-t border-gray-200">
-            <h2 className="text-2xl font-bold text-black mb-8">
-              Related Posts
-            </h2>
-            <div className="space-y-8">
-              {relatedPosts.map((relatedPost) => (
-                <BlogCard key={relatedPost.id} post={relatedPost} />
-              ))}
+          <section className="mt-16 pt-16 bg-gray-50">
+            <div className="max-w-5xl mx-auto px-6 py-12">
+              <div className="mb-8 pb-4 border-b-2 border-black">
+                <h2 className="text-3xl font-bold text-black">
+                  Related Posts
+                </h2>
+                <p className="text-gray-600 mt-2">
+                  Continue reading with these related articles
+                </p>
+              </div>
+              <div className="space-y-8">
+                {relatedPosts.map((relatedPost) => (
+                  <BlogCard key={relatedPost.id} post={relatedPost} />
+                ))}
+              </div>
             </div>
           </section>
         )}

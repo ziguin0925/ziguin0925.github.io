@@ -10,6 +10,20 @@ import {
   ArrowDownTrayIcon,
   XMarkIcon
 } from '@heroicons/react/24/outline';
+import { exportObjectsToCSV } from '../../../../utils/csvExport';
+
+// CSV 헤더 매핑 (컴포넌트 외부에 선언하여 재생성 방지)
+const CSV_COLUMN_MAPPING = {
+  id: 'ID',
+  title: '제목',
+  category: '카테고리',
+  status: '상태',
+  progress: '진행률',
+  assignee: '담당자',
+  priority: '우선순위',
+  date: '날짜',
+  description: '설명'
+} as const;
 
 const WorkDataCleanPage: React.FC = () => {
   const [searchFilters, setSearchFilters] = useState({
@@ -191,6 +205,17 @@ const WorkDataCleanPage: React.FC = () => {
     return priority;
   };
 
+  // CSV 다운로드 함수
+  const downloadCSV = () => {
+    const today = new Date().toISOString().split('T')[0];
+    
+    exportObjectsToCSV(
+      filteredResults,
+      CSV_COLUMN_MAPPING,
+      `work_data_${today}.csv`
+    );
+  };
+
   return (
     <div className="space-y-6">
       {/* 헤더 */}
@@ -204,9 +229,12 @@ const WorkDataCleanPage: React.FC = () => {
             <p className="text-gray-600 mt-1">프로젝트 작업 데이터를 검색하고 관리합니다</p>
           </div>
           <div className="flex gap-3">
-            <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center">
+            <button 
+              onClick={downloadCSV}
+              className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center"
+            >
               <ArrowDownTrayIcon className="w-4 h-4 mr-2" />
-              내보내기
+              내보내기 ({filteredResults.length}개)
             </button>
           </div>
         </div>
